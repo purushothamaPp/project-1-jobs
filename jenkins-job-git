@@ -1,0 +1,22 @@
+pipeline{
+    agent any
+    
+    environment{
+         PATH="$M2:$PATH"
+
+
+    }
+    stages{
+        stage(" git check out"){
+            steps{
+                git branch: 'main', credentialsId: 'purushothamaPp', url: 'https://github.com/purushothamaPp/jenkinscicd/'
+            }
+        }
+        stage("maven build"){
+            steps{
+                sh "mvn clean package"                  
+            }
+        }
+    }
+}
+    
